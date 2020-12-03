@@ -1,0 +1,4 @@
+C:\Users\leons\Desktop\Projects\Haxball\com.s1mplox\Debug\uniball.exe
+C:\Users\leons\Desktop\Projects\Haxball\com.s1mplox\Debug\uniball.pdb
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Debug\uniball.exe
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Debug\uniball.pdb
