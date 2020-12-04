@@ -8,7 +8,7 @@ Hi, As you've seen my description and I made you sure that i really like program
 The most i'm interested, how the games are created, how it's possible that we can play multiplayer with each other?
 I'm interesting also how the websites can being attacked, diffrent ways to get other password, how to ddos, etc.
 My favourite programming language is cpp, because we have more control at our projects, we can manage RAM by pointers.
-In cpp we've got many programming method like object programming, function programming, structured programming, etc and that's beautiful :)
+In cpp we've got many programming methods like object programming, function programming, structured programming, etc and that's beautiful :)
 
 #WHAT IS INSIDE PROJECT'S FOLDER
 
