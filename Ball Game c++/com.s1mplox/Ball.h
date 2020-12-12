@@ -3,17 +3,11 @@
 
 
 #include "SFML/Graphics.hpp"
-
-
 #include "Player.h"
-
-
-
-
+#include "PlayerBlue.h"
+#include "goalPoint.h"
+#include "goalPointBlue.h"
 #include <iostream>
-
-
-
 
 class Ball
 {
@@ -22,8 +16,6 @@ private:
 	sf::Vector2f velocity;
 	sf::Vector2f acceleration;
 	sf::CircleShape circleShape; 
-	
-
 	
 
 	float mass;
@@ -47,7 +39,7 @@ public:
 	sf::Vector2f aimDirNorm;
 
 
-	void update(float deltatime, sf::RenderTarget &target, sf::RenderWindow& win, Ball& f_ball, Player& f_player);
+	void update(float deltatime, sf::RenderTarget &target, sf::RenderWindow& win, Ball& f_ball, Player& f_player, PlayerBlue &f_player2, goalPoint& g_point, goalPointBlue& g_point2);
 	void draw(sf::RenderWindow& window); //rysowanie na ekranie
 
 	//settery

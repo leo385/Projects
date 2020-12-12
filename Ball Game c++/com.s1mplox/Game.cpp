@@ -11,11 +11,35 @@ void Game::initVariables()
 
 void Game::updateBallCollision(float& deltatime)
 {
+	//gPoint
 
+		//__GPOINT for RED
+		float distanceGPOINT = collision.distanceSquared(player.getPosition(), gPoint.getPosition());
+		float distanceSquaredGPOINT = sqrtf(distanceGPOINT);
+		float overlapGPOINT = (distanceSquaredGPOINT - gPoint.getRadius() - player.getRadius()) / 2.f;
+
+		float moveXGPOINT = (overlapGPOINT * (gPoint.getPosition().x - player.getPosition().x) / distanceSquaredGPOINT);
+		float moveYGPOINT = (overlapGPOINT * (gPoint.getPosition().y - player.getPosition().y) / distanceSquaredGPOINT);
+
+		//gPoint setPos Red
+		gPoint.setPosition((ball.getPosition().x - moveXGPOINT) + 15.f, (ball.getPosition().y - moveYGPOINT) + 15.f);
+	
+
+		//__GPOINT for BLUE
+		float distanceGPOINTBLUE = collision.distanceSquared(playerBlue.getPosition(), gPointBlue.getPosition());
+		float distanceSquaredGPOINTBLUE = sqrtf(distanceGPOINTBLUE);
+		float overlapGPOINTBLUE = (distanceSquaredGPOINTBLUE - gPointBlue.getRadius() - playerBlue.getRadius()) / 2.f;
+
+		float moveXGPOINTBLUE = (overlapGPOINTBLUE * (gPointBlue.getPosition().x - playerBlue.getPosition().x) / distanceSquaredGPOINTBLUE);
+		float moveYGPOINTBLUE = (overlapGPOINTBLUE * (gPointBlue.getPosition().y - playerBlue.getPosition().y) / distanceSquaredGPOINTBLUE);
+
+		//gPoint setPos Blue
+		gPointBlue.setPosition((ball.getPosition().x - moveXGPOINTBLUE) + 15.f, (ball.getPosition().y - moveYGPOINTBLUE) + 15.f);
+
+		/////////////////////////////////////////////////////////////////
 		//Red Player
 		if (collision.ballOverPlayer(ball, player)) //jesli sie zderza
 		{
-
 			float distance = collision.distanceSquared(ball.getPosition(), player.getPosition()); //dystans pomiedzy srodkami dwoch kul
 			float distanceSquared = sqrtf(distance); //musimy zrobic pierwiastek z pitagorejczyka
 			float overlap = (distanceSquared - ball.getRadius() - player.getRadius()) / 2.f; //nakladanie sie
@@ -25,7 +49,6 @@ void Game::updateBallCollision(float& deltatime)
 
 			ball.setPosition(ball.getPosition().x - moveX, ball.getPosition().y - moveY);
 			player.setPosition(player.getPosition().x + moveX, player.getPosition().y + moveY);
-
 
 			//wektory po zderzeniu
 			sf::Vector2f normal((player.getPosition().x - ball.getPosition().x) / distanceSquared, (player.getPosition().y - ball.getPosition().y) / distanceSquared);
@@ -430,6 +453,7 @@ void Game::updateStakeCollision()
 
 	}
 
+	
 
 }
 
@@ -577,10 +601,13 @@ void Game::update()
 		updateStakeCollision();
 		updateGui();
 
-		ball.update(deltatime, *this->win, *this->win, ball, player);
+		ball.update(deltatime, *this->win, *this->win, ball, player, playerBlue, gPoint, gPointBlue);
 		player.updateRed(deltatime, this->win);
 		playerBlue.updateBlue(deltatime, this->win);
 
+		//gPoint update
+		gPoint.update(deltatime, this->win);
+		gPointBlue.update(deltatime, this->win);
 
 		redtitle.update(deltatime);
 		bluetitle.update(deltatime);
@@ -589,9 +616,6 @@ void Game::update()
 	}
 
 }
-
-
-
 
 
 void Game::render()
@@ -606,6 +630,8 @@ void Game::render()
 		player.draw(this->win);
 		playerBlue.draw(this->win);
 		ball.draw(*this->win);
+		gPoint.draw(this->win);
+		gPointBlue.draw(this->win);
 		map.render(*this->win);
 		stake.render(*this->win);
 		goal.render(*this->win);

@@ -12,9 +12,6 @@ private:
 
 	//Koniec mapy
 	sf::RectangleShape box[16];
-	
-
-
 
 	void initVariables();
 	void setBoxes();

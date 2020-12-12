@@ -6,12 +6,15 @@
 
 #include "Ball.h"
 #include "Player.h"
+#include "PlayerBlue.h"
 #include "Collision.h"
 #include "hitBoxMap.h"
 #include "Stakes.h"
 #include "Goal.h"
 #include "Scorebar.h"
 #include "WinTitle.h"
+#include "goalPoint.h"
+#include "goalPointBlue.h"
 
 
 class Game
@@ -54,13 +57,27 @@ class Game
 
 		WinTitle redtitle, bluetitle;
 
+		//Players
+
 		Player player = Player("Gracz 1", colorRed , 150.f, 208.f);
-		Player playerBlue = Player("Gracz 2", colorBlue, 770.f, 208.f);
+		PlayerBlue playerBlue = PlayerBlue("Gracz 2", colorBlue, 770.f, 208.f);
+
+		//Direction ball
+
+		sf::Vector2f vertexDirBall;
+		sf::Vector2f playerCenter;
+		sf::Vector2f aimDir;
+		sf::Vector2f aimDirNorm;
+
+
+
 		Collision collision;
 		hitBoxMap map;
 		Stakes stake;
 		Goal goal;
 		Scorebar scorebar;
+		goalPoint gPoint;
+		goalPointBlue gPointBlue;
 
 		sf::Vector2f mousePosition;
 

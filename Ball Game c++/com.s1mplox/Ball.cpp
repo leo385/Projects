@@ -30,23 +30,23 @@ Ball::Ball()
 
 Ball::~Ball(){}
 
-void Ball::update(float deltatime, sf::RenderTarget& target, sf::RenderWindow &win, Ball& f_ball, Player& f_player)
+void Ball::update(float deltatime, sf::RenderTarget& target, sf::RenderWindow &win, Ball& f_ball, Player& f_player, PlayerBlue& f_player2, goalPoint& g_point, goalPointBlue& g_point2)
 {
 	Collision col;
 
 	setAcceleration(-getVelocity().x * 0.9f * deltatime, -getVelocity().y * 0.9f * deltatime); //Zwolnienie
 	setVelocity(getVelocity().x + (getAcceleration().x), getVelocity().y + (getAcceleration().y)); //predkosc
 
-	
+	//Red Player
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 	{
 		f_player.setOutlineColor(sf::Color::White);
 
 		if (col.ballOverPlayer(f_ball, f_player))
 		{
 			
-			this->vertexDirBall = sf::Vector2f(sf::Mouse::getPosition(win));
+			this->vertexDirBall = sf::Vector2f(g_point.getPosition().x, g_point.getPosition().y);
 			this->playerCenter = sf::Vector2f(f_player.getPosition().x + f_player.getRadius(), f_player.getPosition().y + f_player.getRadius());
 			this->aimDir = this->vertexDirBall - this->playerCenter;
 			this->aimDirNorm = this->aimDir / sqrt(pow(this->aimDir.x, 2) + pow(this->aimDir.y, 2));
@@ -65,8 +65,39 @@ void Ball::update(float deltatime, sf::RenderTarget& target, sf::RenderWindow &w
 			f_player.setOutlineColor(sf::Color::Black);
 		}
 
+	//Blue Player
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+	{
+		f_player2.setOutlineColor(sf::Color::White);
+
+		if (col.ballOverPlayer(f_ball, f_player2))
+		{
+
+			this->vertexDirBall = sf::Vector2f(g_point2.getPosition().x, g_point2.getPosition().y);
+			this->playerCenter = sf::Vector2f(f_player2.getPosition().x + f_player2.getRadius(), f_player2.getPosition().y + f_player2.getRadius());
+			this->aimDir = this->vertexDirBall - this->playerCenter;
+			this->aimDirNorm = this->aimDir / sqrt(pow(this->aimDir.x, 2) + pow(this->aimDir.y, 2));
+
+			currVelocity = this->aimDirNorm * f_ball.maxSpeed;
+
+			setVelocity(currVelocity.x, currVelocity.y);
+
+		}
+		else {
+			setAcceleration(-getVelocity().x * 0.9f * deltatime, -getVelocity().y * 0.9f * deltatime); //Zwolnienie
+			setVelocity(getVelocity().x + (getAcceleration().x), getVelocity().y + (getAcceleration().y)); //predkosc
+		}
+	}
+	else {
+		f_player2.setOutlineColor(sf::Color::Black);
+	}
+
+
+
 		hitBoxMap map;
 
+		//Zrobic to inaczej tak jak, ball.cpp i goal.cpp
 
 		//LEFT UP
 		if (this->circleShape.getGlobalBounds().intersects(map.getBox(4).getGlobalBounds()))
@@ -116,12 +147,6 @@ void Ball::update(float deltatime, sf::RenderTarget& target, sf::RenderWindow &w
 		//FOR GOAL RIGHT
 		else if (this->circleShape.getGlobalBounds().intersects(map.getBox(11).getGlobalBounds()))
 		velocity.x = -0.1f;
-
-		
-
-		
-
-		
 
 		else {
 			setAcceleration(-getVelocity().x * 0.9f * deltatime, -getVelocity().y * 0.9f * deltatime); //Zwolnienie

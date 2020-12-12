@@ -134,9 +134,12 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Goal.cpp" />
+    <ClCompile Include="goalPoint.cpp" />
+    <ClCompile Include="goalPointBlue.cpp" />
     <ClCompile Include="hitBoxMap.cpp" />
     <ClCompile Include="Index.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerBlue.cpp" />
     <ClCompile Include="Scorebar.cpp" />
     <ClCompile Include="Stakes.cpp" />
     <ClCompile Include="WinTitle.cpp" />
@@ -146,8 +149,11 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Goal.h" />
+    <ClInclude Include="goalPoint.h" />
+    <ClInclude Include="goalPointBlue.h" />
     <ClInclude Include="hitBoxMap.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerBlue.h" />
     <ClInclude Include="Scorebar.h" />
     <ClInclude Include="Stakes.h" />
     <ClInclude Include="WinTitle.h" />

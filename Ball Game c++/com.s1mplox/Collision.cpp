@@ -1,5 +1,6 @@
 #include "Collision.h"
 
+
 Collision::Collision()
 {
 }
@@ -16,7 +17,15 @@ bool Collision::ballOverPlayer(Ball& ball, Player& player)
 	return distance <= radiusSum * radiusSum; //z twierdzenia pitagorasa zwraca true jesli dystans jest mniejszy lub rowny sumie promieni kulek
 }
 
-bool Collision::playerOverPlayer(Player& player_1, Player& player_2)
+bool Collision::ballOverPlayer(Ball& ball, PlayerBlue& player)
+{
+	float distance = distanceSquared(ball.getPosition(), player.getPosition());
+	float radiusSum = ball.getRadius() + player.getRadius();
+
+	return distance <= radiusSum * radiusSum;
+}
+
+bool Collision::playerOverPlayer(Player& player_1, PlayerBlue& player_2)
 {
 	float distance = distanceSquared(player_1.getPosition(), player_2.getPosition());
 	float radiusSum = player_1.getRadius() + player_2.getRadius();
@@ -73,7 +82,7 @@ bool Collision::r_DownStakeOverPlayer(Stakes& stake, Player& player)
 
 }
 
-bool Collision::l_UpStakeOverPlayerBlue(Stakes& stake, Player& player)
+bool Collision::l_UpStakeOverPlayerBlue(Stakes& stake, PlayerBlue& player)
 {
 	float distance = distanceSquared(stake.getShape(0).getPosition(), player.getPosition());
 	float radiusSum = stake.getShape(0).getRadius() + player.getRadius();
@@ -83,7 +92,7 @@ bool Collision::l_UpStakeOverPlayerBlue(Stakes& stake, Player& player)
 	return distance <= radiusSum * radiusSum;
 }
 
-bool Collision::l_DownStakeOverPlayerBlue(Stakes& stake, Player& player)
+bool Collision::l_DownStakeOverPlayerBlue(Stakes& stake, PlayerBlue& player)
 {
 	float distance = distanceSquared(stake.getShape(1).getPosition(), player.getPosition());
 	float radiusSum = stake.getShape(1).getRadius() + player.getRadius();
@@ -93,7 +102,7 @@ bool Collision::l_DownStakeOverPlayerBlue(Stakes& stake, Player& player)
 	return distance <= radiusSum * radiusSum;
 }
 
-bool Collision::r_UpStakeOverPlayerBlue(Stakes& stake, Player& player)
+bool Collision::r_UpStakeOverPlayerBlue(Stakes& stake, PlayerBlue& player)
 {
 	float distance = distanceSquared(stake.getShape(2).getPosition(), player.getPosition());
 	float radiusSum = stake.getShape(2).getRadius() + player.getRadius();
@@ -103,7 +112,7 @@ bool Collision::r_UpStakeOverPlayerBlue(Stakes& stake, Player& player)
 	return distance <= radiusSum * radiusSum;
 }
 
-bool Collision::r_DownStakeOverPlayerBlue(Stakes& stake, Player& player)
+bool Collision::r_DownStakeOverPlayerBlue(Stakes& stake, PlayerBlue& player)
 {
 	float distance = distanceSquared(stake.getShape(3).getPosition(), player.getPosition());
 	float radiusSum = stake.getShape(3).getRadius() + player.getRadius();
