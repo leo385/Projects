@@ -1,4 +1,4 @@
-# 🎅 Projects 🎅🏼
+# 🎅 Projects 🎅
 #Game_Folder_cpp
 #Python_Applications 🐍
 
