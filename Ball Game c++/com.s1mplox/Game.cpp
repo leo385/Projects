@@ -552,13 +552,14 @@ void Game::updateGui()
 Game::Game()
 {
 	this->win = new sf::RenderWindow(sf::VideoMode(this->W, this->H), "...", sf::Style::Default);
-
+	this->connect = new Connect(&ip, 2000);
 
 }
 
 Game::~Game()
 {
 	delete this->win;
+	delete this->connect;
 }
 
 bool Game::isRunning() const

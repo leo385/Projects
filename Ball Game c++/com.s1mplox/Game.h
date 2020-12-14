@@ -15,6 +15,7 @@
 #include "WinTitle.h"
 #include "goalPoint.h"
 #include "goalPointBlue.h"
+#include "Connect.h"
 
 
 class Game
@@ -34,7 +35,9 @@ class Game
 		sf::Clock clock;
 		sf::Clock clockGameTime;
 
-		
+		sf::IpAddress ip = sf::IpAddress::getLocalAddress();
+		Connect *connect;
+
 	
 	    int pointRed;
 	    int pointBlue;

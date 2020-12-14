@@ -1,10 +1,9 @@
 #include "Game.h"
-#include "SFML/Network.hpp"
+
 
 int main()
 {
 	Game gra; //Osobny proces
-
 
 		while (gra.isRunning())
 		{
