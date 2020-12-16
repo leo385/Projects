@@ -34,6 +34,8 @@ void hitBoxMap::setBoxes()
 
 	//border pitch lines for the ball
 
+	//tym sie zajmiemy/////////////////////////////////////////////////////////
+
 	//LEFT UP
 	this->box[4].setPosition(sf::Vector2f(91.f, 44.f));
 	this->box[4].setSize(sf::Vector2f(4.f, 100.f));
@@ -59,6 +61,8 @@ void hitBoxMap::setBoxes()
 	this->box[9].setPosition(sf::Vector2f(91.f, 383.f));
 	this->box[9].setSize(sf::Vector2f(744.f, 4.f));
 
+
+	/////////////////////////////////////////////////////////////////////
 	//FOR GOAL LEFT
 	this->box[10].setPosition(sf::Vector2f(60.f, 150.f));
 	this->box[10].setSize(sf::Vector2f(4.f, 129.f));
@@ -119,6 +123,36 @@ sf::FloatRect hitBoxMap::getGlobalBounds() const
 sf::RectangleShape hitBoxMap::getBox(int i) const
 {
 	return this->box[i];
+}
+
+float hitBoxMap::getLeftUpWall() const
+{
+	return this->box[4].getPosition().x + this->box[4].getSize().x / 2.f;
+}
+
+float hitBoxMap::getLeftDownWall() const
+{
+	return this->box[5].getPosition().x + this->box[5].getSize().x / 2.f;
+}
+
+float hitBoxMap::getUpWall() const
+{
+	return this->box[6].getPosition().y + this->box[6].getSize().y / 2.f;
+}
+
+float hitBoxMap::getDownWall() const
+{
+	return this->box[9].getPosition().y - this->box[9].getSize().y / 2.f;
+}
+
+float hitBoxMap::getRightUpWall() const
+{
+	return this->box[7].getPosition().x - this->box[7].getSize().x / 2.f;
+}
+
+float hitBoxMap::getRightDownWall() const
+{
+	return this->box[8].getPosition().x - this->box[8].getSize().x / 2.f;
 }
 
 

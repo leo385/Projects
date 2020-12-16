@@ -17,7 +17,9 @@ public:
 	~Collision();
 
 	bool ballOverPlayer(Ball& ball, Player& player); //Czy nasz³o na siebie
-	bool ballOverPlayer(Ball& ball, PlayerBlue& player);
+
+
+	bool ballOverPlayerBLUE(Ball& ball, PlayerBlue& playerblue);
 
 	bool playerOverPlayer(Player& player_1, PlayerBlue& player_2);
 	

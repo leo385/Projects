@@ -17,12 +17,12 @@ bool Collision::ballOverPlayer(Ball& ball, Player& player)
 	return distance <= radiusSum * radiusSum; //z twierdzenia pitagorasa zwraca true jesli dystans jest mniejszy lub rowny sumie promieni kulek
 }
 
-bool Collision::ballOverPlayer(Ball& ball, PlayerBlue& player)
+bool Collision::ballOverPlayerBLUE(Ball& ball, PlayerBlue& playerblue)
 {
-	float distance = distanceSquared(ball.getPosition(), player.getPosition());
-	float radiusSum = ball.getRadius() + player.getRadius();
+	float distanceBLUE = distanceSquared(ball.getPosition(), playerblue.getPosition());
+	float radiusSumBLUE = ball.getRadius() + playerblue.getRadius();
 
-	return distance <= radiusSum * radiusSum;
+	return distanceBLUE <= radiusSumBLUE * radiusSumBLUE;
 }
 
 bool Collision::playerOverPlayer(Player& player_1, PlayerBlue& player_2)

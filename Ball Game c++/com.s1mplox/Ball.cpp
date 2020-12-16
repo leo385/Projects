@@ -71,7 +71,7 @@ void Ball::update(float deltatime, sf::RenderTarget& target, sf::RenderWindow &w
 	{
 		f_player2.setOutlineColor(sf::Color::White);
 
-		if (col.ballOverPlayer(f_ball, f_player2))
+		if (col.ballOverPlayerBLUE(f_ball, f_player2))
 		{
 
 			this->vertexDirBall = sf::Vector2f(g_point2.getPosition().x, g_point2.getPosition().y);
@@ -96,36 +96,34 @@ void Ball::update(float deltatime, sf::RenderTarget& target, sf::RenderWindow &w
 
 
 		hitBoxMap map;
-
-		//Zrobic to inaczej tak jak, ball.cpp i goal.cpp
-
 		//LEFT UP
 		if (this->circleShape.getGlobalBounds().intersects(map.getBox(4).getGlobalBounds()))
 		velocity.x = -getVelocity().x;
 		
 		//LEFT DOWN
 		else if (this->circleShape.getGlobalBounds().intersects(map.getBox(5).getGlobalBounds()))
-		velocity.x = -getVelocity().x;
-		
+			velocity.x = -getVelocity().x;
+
 
 		//UP
 		else if (this->circleShape.getGlobalBounds().intersects(map.getBox(6).getGlobalBounds()))
-		velocity.y = -getVelocity().y;
+			velocity.y = -getVelocity().y;
 
 		//RIGHT UP
 		else if (this->circleShape.getGlobalBounds().intersects(map.getBox(7).getGlobalBounds()))
-		velocity.x = -(getVelocity().x);
+			velocity.x = -(getVelocity().x);
 
 		//RIGHT DOWN
 		else if (this->circleShape.getGlobalBounds().intersects(map.getBox(8).getGlobalBounds()))
-		velocity.x = -(getVelocity().x);
+			velocity.x = -(getVelocity().x);
 
 		//DOWN
 		else if (this->circleShape.getGlobalBounds().intersects(map.getBox(9).getGlobalBounds()))
-		velocity.y = -(getVelocity().y);
+			velocity.y = -(getVelocity().y);
+		
 
 		//FOR GOAL LEFT TOP
-		else if (this->circleShape.getGlobalBounds().intersects(map.getBox(12).getGlobalBounds()))
+		if (this->circleShape.getGlobalBounds().intersects(map.getBox(12).getGlobalBounds()))
 		velocity.y = 0.1f;
 
 		//FOR GOAL LEFT BOTTOM

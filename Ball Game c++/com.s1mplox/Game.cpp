@@ -5,7 +5,7 @@ void Game::initVariables()
 	
 	this->win->setFramerateLimit(60);
 	this->tex.loadFromFile("Sprite/map.png");
-	this->spr.setTexture(this->tex);	
+	this->spr.setTexture(this->tex);
 
 }
 
@@ -25,18 +25,21 @@ void Game::updateBallCollision(float& deltatime)
 		gPoint.setPosition((ball.getPosition().x - moveXGPOINT) + 15.f, (ball.getPosition().y - moveYGPOINT) + 15.f);
 	
 
-		//__GPOINT for BLUE
-		float distanceGPOINTBLUE = collision.distanceSquared(playerBlue.getPosition(), gPointBlue.getPosition());
-		float distanceSquaredGPOINTBLUE = sqrtf(distanceGPOINTBLUE);
-		float overlapGPOINTBLUE = (distanceSquaredGPOINTBLUE - gPointBlue.getRadius() - playerBlue.getRadius()) / 2.f;
+		if (this->addBluePlayer == true)
+		{
+			//__GPOINT for BLUE
+			float distanceGPOINTBLUE = collision.distanceSquared(playerBlue.getPosition(), gPointBlue.getPosition());
+			float distanceSquaredGPOINTBLUE = sqrtf(distanceGPOINTBLUE);
+			float overlapGPOINTBLUE = (distanceSquaredGPOINTBLUE - gPointBlue.getRadius() - playerBlue.getRadius()) / 2.f;
 
-		float moveXGPOINTBLUE = (overlapGPOINTBLUE * (gPointBlue.getPosition().x - playerBlue.getPosition().x) / distanceSquaredGPOINTBLUE);
-		float moveYGPOINTBLUE = (overlapGPOINTBLUE * (gPointBlue.getPosition().y - playerBlue.getPosition().y) / distanceSquaredGPOINTBLUE);
+			float moveXGPOINTBLUE = (overlapGPOINTBLUE * (gPointBlue.getPosition().x - playerBlue.getPosition().x) / distanceSquaredGPOINTBLUE);
+			float moveYGPOINTBLUE = (overlapGPOINTBLUE * (gPointBlue.getPosition().y - playerBlue.getPosition().y) / distanceSquaredGPOINTBLUE);
 
-		//gPoint setPos Blue
-		gPointBlue.setPosition((ball.getPosition().x - moveXGPOINTBLUE) + 15.f, (ball.getPosition().y - moveYGPOINTBLUE) + 15.f);
-
+			//gPoint setPos Blue
+			gPointBlue.setPosition((ball.getPosition().x - moveXGPOINTBLUE) + 15.f, (ball.getPosition().y - moveYGPOINTBLUE) + 15.f);
+		}
 		/////////////////////////////////////////////////////////////////
+
 		//Red Player
 		if (collision.ballOverPlayer(ball, player)) //jesli sie zderza
 		{
@@ -78,100 +81,116 @@ void Game::updateBallCollision(float& deltatime)
 
 			ball.setAcceleration(-ball.getVelocity().x * 20000.f * deltatime, -ball.getVelocity().y * 20000.f * deltatime); //Zwolnienie
 			ball.setVelocity(ball.getVelocity().x + (ball.getAcceleration().x), ball.getVelocity().y + (ball.getAcceleration().y));
+
+			player.setAcceleration(-player.getVelocity().x * 20000.f * deltatime, -player.getVelocity().y * 20000.f * deltatime); //Zwolnienie
+			player.setVelocity(player.getVelocity().x + (player.getAcceleration().x), player.getVelocity().y + (player.getAcceleration().y));
 		}
 
 		//Blue Player
-		if (collision.ballOverPlayer(ball, playerBlue)) //jesli sie zderza
+		
+		if (this->addBluePlayer == true)
 		{
+			if (collision.ballOverPlayerBLUE(ball, playerBlue)) //jesli sie zderza
+			{
 
-			float distance = collision.distanceSquared(ball.getPosition(), playerBlue.getPosition()); //dystans pomiedzy srodkami dwoch kul
-			float distanceSquared = sqrtf(distance); //musimy zrobic pierwiastek z pitagorejczyka
-			float overlap = (distanceSquared - ball.getRadius() - playerBlue.getRadius()) / 2.f; //nakladanie sie
+				float distanceBLUE = collision.distanceSquared(ball.getPosition(), playerBlue.getPosition()); //dystans pomiedzy srodkami dwoch kul
+				float distanceSquaredBLUE = sqrtf(distanceBLUE); //musimy zrobic pierwiastek z pitagorejczyka
+				float overlapBLUE = (distanceSquaredBLUE - ball.getRadius() - playerBlue.getRadius()) / 2.f; //nakladanie sie
 
-			float moveX = (overlap * (ball.getPosition().x - playerBlue.getPosition().x) / distanceSquared);
-			float moveY = (overlap * (ball.getPosition().y - playerBlue.getPosition().y) / distanceSquared);
+				float moveXBLUE = (overlapBLUE * (ball.getPosition().x - playerBlue.getPosition().x) / distanceSquaredBLUE);
+				float moveYBLUE = (overlapBLUE * (ball.getPosition().y - playerBlue.getPosition().y) / distanceSquaredBLUE);
 
-			ball.setPosition(ball.getPosition().x - moveX, ball.getPosition().y - moveY);
-			playerBlue.setPosition(playerBlue.getPosition().x + moveX, playerBlue.getPosition().y + moveY);
+				ball.setPosition(ball.getPosition().x - moveXBLUE, ball.getPosition().y - moveYBLUE);
+				playerBlue.setPosition(playerBlue.getPosition().x + moveXBLUE, playerBlue.getPosition().y + moveYBLUE);
 
 
-			//wektory po zderzeniu
-			sf::Vector2f normal((playerBlue.getPosition().x - ball.getPosition().x) / distanceSquared, (playerBlue.getPosition().y - ball.getPosition().y) / distanceSquared);
-			sf::Vector2f tangent(-normal.y, normal.x);
+				//wektory po zderzeniu
+				sf::Vector2f normalBLUE((playerBlue.getPosition().x - ball.getPosition().x) / distanceSquaredBLUE, (playerBlue.getPosition().y - ball.getPosition().y) / distanceSquaredBLUE);
+				sf::Vector2f tangentBLUE(-normalBLUE.y, normalBLUE.x);
 
-			//predkosci do stycznej
-			float dotProductTangent1 = ball.getVelocity().x * tangent.x + ball.getVelocity().y * tangent.y;
-			float dotProductTangent2 = playerBlue.getVelocity().x * tangent.x + playerBlue.getVelocity().y * tangent.y;
+				//predkosci do stycznej
+				float dotProductTangent1BLUE = ball.getVelocity().x * tangentBLUE.x + ball.getVelocity().y * tangentBLUE.y;
+				float dotProductTangent2BLUE = playerBlue.getVelocity().x * tangentBLUE.x + playerBlue.getVelocity().y * tangentBLUE.y;
 
-			//predkosci do normalnej
-			float dotProductNormal1 = ball.getVelocity().x * normal.x + ball.getVelocity().y * normal.y;
-			float dotProductNormal2 = playerBlue.getVelocity().x * normal.x + playerBlue.getVelocity().y * normal.y;
+				//predkosci do normalnej
+				float dotProductNormal1BLUE = ball.getVelocity().x * normalBLUE.x + ball.getVelocity().y * normalBLUE.y;
+				float dotProductNormal2BLUE = playerBlue.getVelocity().x * normalBLUE.x + playerBlue.getVelocity().y * normalBLUE.y;
 
-			//koncowe predkosci z zasady pêdu
+				//koncowe predkosci z zasady pêdu
 
-			float m1 = (dotProductNormal1 * (ball.getMass() - playerBlue.getMass()) + 2.95f * ball.getMass() * dotProductNormal2) / (ball.getMass() + playerBlue.getMass());
-			float m2 = (dotProductNormal2 * (playerBlue.getMass() - ball.getMass()) + 2.95f * ball.getMass() * dotProductNormal1) / (ball.getMass() + playerBlue.getMass());
+				float m1BLUE = (dotProductNormal1BLUE * (ball.getMass() - playerBlue.getMass()) + 2.95f * ball.getMass() * dotProductNormal2BLUE) / (ball.getMass() + playerBlue.getMass());
+				float m2BLUE = (dotProductNormal2BLUE * (playerBlue.getMass() - ball.getMass()) + 2.95f * ball.getMass() * dotProductNormal1BLUE) / (ball.getMass() + playerBlue.getMass());
 
-			dt = clock.restart().asSeconds();
+				dt = clock.restart().asSeconds();
 
-			//nadajemy predkosci
-			ball.setVelocity(tangent.x * dotProductTangent1 + normal.x * m1, tangent.y * dotProductTangent1 + normal.y * m1);
-			playerBlue.setVelocity(tangent.x * dotProductTangent2 + normal.x * m2, tangent.y * dotProductTangent2 + normal.y * m2);
+				//nadajemy predkosci
+				ball.setVelocity(tangentBLUE.x * dotProductTangent1BLUE + normalBLUE.x * m1BLUE, tangentBLUE.y * dotProductTangent1BLUE + normalBLUE.y * m1BLUE);
+				playerBlue.setVelocity(tangentBLUE.x * dotProductTangent2BLUE + normalBLUE.x * m2BLUE, tangentBLUE.y * dotProductTangent2BLUE + normalBLUE.y * m2BLUE);
+			}
+			else
+			{
+
+				
+				playerBlue.setAcceleration(-playerBlue.getVelocity().x * 20000.f * deltatime, -playerBlue.getVelocity().y * 20000.f * deltatime); //Zwolnienie
+				playerBlue.setVelocity(playerBlue.getVelocity().x + (playerBlue.getAcceleration().x), playerBlue.getVelocity().y + (playerBlue.getAcceleration().y));
+			}
+			
 		}
-		else
-		{
-
-			ball.setAcceleration(-ball.getVelocity().x * 20000.f * deltatime, -ball.getVelocity().y * 20000.f * deltatime); //Zwolnienie
-			ball.setVelocity(ball.getVelocity().x + (ball.getAcceleration().x), ball.getVelocity().y + (ball.getAcceleration().y));
-		}
+		
+		
 	}
-
+	
 
 
 void Game::updatePlayerCollision(float& deltatime)
 {
-	if (collision.playerOverPlayer(player, playerBlue)) //jesli sie zderza
+	if (this->addBluePlayer == true)
 	{
+		if (collision.playerOverPlayer(player, playerBlue)) //jesli sie zderza
+		{
 
-		float distance = collision.distanceSquared(player.getPosition(), playerBlue.getPosition()); //dystans pomiedzy srodkami dwoch kul
-		float distanceSquared = sqrtf(distance); //musimy zrobic pierwiastek z pitagorejczyka
-		float overlap = (distanceSquared - player.getRadius() - playerBlue.getRadius()) / 2.f; //nakladanie sie
+			float distancePLAYER = collision.distanceSquared(player.getPosition(), playerBlue.getPosition()); //dystans pomiedzy srodkami dwoch kul
+			float distanceSquaredPLAYER = sqrtf(distancePLAYER); //musimy zrobic pierwiastek z pitagorejczyka
+			float overlapPLAYER = (distanceSquaredPLAYER - player.getRadius() - playerBlue.getRadius()) / 2.f; //nakladanie sie
 
-		float moveX = (overlap * (player.getPosition().x - playerBlue.getPosition().x) / distanceSquared);
-		float moveY = (overlap * (player.getPosition().y - playerBlue.getPosition().y) / distanceSquared);
+			float moveXPLAYER = (overlapPLAYER * (player.getPosition().x - playerBlue.getPosition().x) / distanceSquaredPLAYER);
+			float moveYPLAYER = (overlapPLAYER * (player.getPosition().y - playerBlue.getPosition().y) / distanceSquaredPLAYER);
 
-		player.setPosition(player.getPosition().x - moveX, player.getPosition().y - moveY);
-		playerBlue.setPosition(playerBlue.getPosition().x + moveX, playerBlue.getPosition().y + moveY);
+			player.setPosition(player.getPosition().x - moveXPLAYER, player.getPosition().y - moveYPLAYER);
+			playerBlue.setPosition(playerBlue.getPosition().x + moveXPLAYER, playerBlue.getPosition().y + moveYPLAYER);
 
 
-		//wektory po zderzeniu
-		sf::Vector2f normal((playerBlue.getPosition().x - player.getPosition().x) / distanceSquared, (playerBlue.getPosition().y - player.getPosition().y) / distanceSquared);
-		sf::Vector2f tangent(-normal.y, normal.x);
+			//wektory po zderzeniu
+			sf::Vector2f normalPLAYER((playerBlue.getPosition().x - player.getPosition().x) / distanceSquaredPLAYER, (playerBlue.getPosition().y - player.getPosition().y) / distanceSquaredPLAYER);
+			sf::Vector2f tangentPLAYER(-normalPLAYER.y, normalPLAYER.x);
 
-		//predkosci do stycznej
-		float dotProductTangent1 = player.getVelocity().x * tangent.x + player.getVelocity().y * tangent.y;
-		float dotProductTangent2 = playerBlue.getVelocity().x * tangent.x + playerBlue.getVelocity().y * tangent.y;
+			//predkosci do stycznej
+			float dotProductTangent1PLAYER = player.getVelocity().x * tangentPLAYER.x + player.getVelocity().y * tangentPLAYER.y;
+			float dotProductTangent2PLAYER = playerBlue.getVelocity().x * tangentPLAYER.x + playerBlue.getVelocity().y * tangentPLAYER.y;
 
-		//predkosci do normalnej
-		float dotProductNormal1 = player.getVelocity().x * normal.x + player.getVelocity().y * normal.y;
-		float dotProductNormal2 = playerBlue.getVelocity().x * normal.x + playerBlue.getVelocity().y * normal.y;
+			//predkosci do normalnej
+			float dotProductNormal1PLAYER = player.getVelocity().x * normalPLAYER.x + player.getVelocity().y * normalPLAYER.y;
+			float dotProductNormal2PLAYER = playerBlue.getVelocity().x * normalPLAYER.x + playerBlue.getVelocity().y * normalPLAYER.y;
 
-		//koncowe predkosci z zasady pêdu
+			//koncowe predkosci z zasady pêdu
 
-		float m1 = (dotProductNormal1 * (player.getMass() - playerBlue.getMass()) + 2.95f * player.getMass() * dotProductNormal2) / (player.getMass() + playerBlue.getMass());
-		float m2 = (dotProductNormal2 * (playerBlue.getMass() - player.getMass()) + 2.95f * player.getMass() * dotProductNormal1) / (player.getMass() + playerBlue.getMass());
+			float m1PLAYER = (dotProductNormal1PLAYER * (player.getMass() - playerBlue.getMass()) + 2.95f * player.getMass() * dotProductNormal2PLAYER) / (player.getMass() + playerBlue.getMass());
+			float m2PLAYER = (dotProductNormal2PLAYER * (playerBlue.getMass() - player.getMass()) + 2.95f * player.getMass() * dotProductNormal1PLAYER) / (player.getMass() + playerBlue.getMass());
 
-		dt = clock.restart().asSeconds();
+			dt = clock.restart().asSeconds();
 
-		//nadajemy predkosci
-		player.setVelocity(tangent.x * dotProductTangent1 + normal.x * m1, tangent.y * dotProductTangent1 + normal.y * m1);
-		playerBlue.setVelocity(tangent.x * dotProductTangent2 + normal.x * m2, tangent.y * dotProductTangent2 + normal.y * m2);
-	}
-	else
-	{
+			//nadajemy predkosci
+			player.setVelocity(tangentPLAYER.x * dotProductTangent1PLAYER + normalPLAYER.x * m1PLAYER, tangentPLAYER.y * dotProductTangent1PLAYER + normalPLAYER.y * m1PLAYER);
+			playerBlue.setVelocity(tangentPLAYER.x * dotProductTangent2PLAYER + normalPLAYER.x * m2PLAYER, tangentPLAYER.y * dotProductTangent2PLAYER + normalPLAYER.y * m2PLAYER);
+		}
+		else
+		{
+			player.setAcceleration(-player.getVelocity().x * 20000.f * deltatime, -player.getVelocity().y * 20000.f * deltatime); //Zwolnienie
+			player.setVelocity(player.getVelocity().x + (player.getAcceleration().x), player.getVelocity().y + (player.getAcceleration().y));
 
-		player.setAcceleration(-player.getVelocity().x * 20000.f * deltatime, -player.getVelocity().y * 20000.f * deltatime); //Zwolnienie
-		player.setVelocity(player.getVelocity().x + (player.getAcceleration().x), player.getVelocity().y + (player.getAcceleration().y));
+			playerBlue.setAcceleration(-playerBlue.getVelocity().x * 20000.f * deltatime, -playerBlue.getVelocity().y * 20000.f * deltatime); //Zwolnienie
+			playerBlue.setVelocity(playerBlue.getVelocity().x + (playerBlue.getAcceleration().x), playerBlue.getVelocity().y + (playerBlue.getAcceleration().y));
+		}
 	}
 }
 
@@ -540,6 +559,9 @@ void Game::updateGui()
 	ss << pointRed << " - " << pointBlue << "                                 " << "0" << static_cast<int>(round(czasMinuty))
 		<< ":" << static_cast<int>(round(czasSekundy)) << static_cast<int>(round(czasMilisekundy));
 
+	//restart
+	if (this->pointRed == 3 || this->pointBlue == 3)
+		this->restartGame();
 
 	this->text.setFont(font);
 	this->text.setCharacterSize(19);
@@ -549,17 +571,41 @@ void Game::updateGui()
 	this->text.setString(ss.str());
 }
 
+void Game::restartGame()
+{
+	//Restart POS PLAYERS
+	this->player.setPosition(150.f, 208.f);
+	this->playerBlue.setPosition(770.f, 208.f);
+
+	clock.restart();
+	clockGameTime.restart();
+
+	//RESTART POINTS AND TIMER
+	this->czasMinuty = 0;
+	this->czasSekundy = 0;
+	this->czasMilisekundy = 0;
+	this->czasMicrosekundy = 0;
+
+	this->pointRed = 0;
+	this->pointBlue = 0;
+
+}
+
 Game::Game()
 {
 	this->win = new sf::RenderWindow(sf::VideoMode(this->W, this->H), "...", sf::Style::Default);
-	this->connect = new Connect(&ip, 2000);
+	
+
+	std::cout << "If you want play LAN, press 'I'" << "\n";
+	std::cout << "If you want play Online, press 'O'" << "\n";
+	std::cout << "If you want play 1v1 in computer, press 'P'" << "\n";
 
 }
 
 Game::~Game()
 {
 	delete this->win;
-	delete this->connect;
+	//delete this->connect;
 }
 
 bool Game::isRunning() const
@@ -604,7 +650,26 @@ void Game::update()
 
 		ball.update(deltatime, *this->win, *this->win, ball, player, playerBlue, gPoint, gPointBlue);
 		player.updateRed(deltatime, this->win);
-		playerBlue.updateBlue(deltatime, this->win);
+
+		if (addBluePlayer == true) { playerBlue.updateBlue(deltatime, this->win); }
+
+		//LAN
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
+		{
+			this->connect = new Connect(&ip_LAN, PORT);
+			this->addBluePlayer = true;
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+		{
+			this->connect = new Connect(&ip_PUBLIC, PORT);
+			this->addBluePlayer = true;
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+		{
+			this->addBluePlayer = true;
+
+		}
+		
 
 		//gPoint update
 		gPoint.update(deltatime, this->win);
@@ -629,7 +694,10 @@ void Game::render()
 
 		this->win->draw(this->spr);
 		player.draw(this->win);
-		playerBlue.draw(this->win);
+
+		if (addBluePlayer == true) { playerBlue.draw(this->win); }
+		
+
 		ball.draw(*this->win);
 		gPoint.draw(this->win);
 		gPointBlue.draw(this->win);

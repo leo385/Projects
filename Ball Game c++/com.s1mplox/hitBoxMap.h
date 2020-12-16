@@ -25,6 +25,13 @@ public:
 	sf::RectangleShape getBox(int i) const;
 	
 
+	float getLeftUpWall() const;
+	float getLeftDownWall() const;
+	float getUpWall() const;
+	float getDownWall() const;
+	float getRightUpWall() const;
+	float getRightDownWall() const;
+
 	void render(sf::RenderWindow &window);
 
 

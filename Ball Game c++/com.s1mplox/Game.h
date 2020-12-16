@@ -17,6 +17,7 @@
 #include "goalPointBlue.h"
 #include "Connect.h"
 
+#define PORT 2000 //default port game servers
 
 class Game
 {
@@ -35,9 +36,10 @@ class Game
 		sf::Clock clock;
 		sf::Clock clockGameTime;
 
-		sf::IpAddress ip = sf::IpAddress::getLocalAddress();
-		Connect *connect;
+		sf::IpAddress ip_LAN = sf::IpAddress::getLocalAddress();
+		sf::IpAddress ip_PUBLIC = sf::IpAddress::getPublicAddress();
 
+		Connect *connect;
 	
 	    int pointRed;
 	    int pointBlue;
@@ -50,6 +52,7 @@ class Game
 		double czasMilisekundy = 0;
 		double czasMicrosekundy = 0;
 
+		bool addBluePlayer = false;
 		bool isScored = false;
 		float maxTime;
 
@@ -64,6 +67,7 @@ class Game
 
 		Player player = Player("Gracz 1", colorRed , 150.f, 208.f);
 		PlayerBlue playerBlue = PlayerBlue("Gracz 2", colorBlue, 770.f, 208.f);
+		
 
 		//Direction ball
 
@@ -89,7 +93,7 @@ class Game
 		void updatePlayerCollision(float& deltatime);
 		void updateStakeCollision();
 		void updateGui();
-		
+		void restartGame();
 	
 
 	public:
