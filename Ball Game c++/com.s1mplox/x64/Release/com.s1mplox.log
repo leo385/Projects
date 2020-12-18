@@ -1,0 +1,28 @@
+﻿  Ball.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Ball.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Collision.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Collision.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Connect.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Player.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Game.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Ball.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Goal.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Player.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  goalPoint.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Player.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  goalPointBlue.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Player.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  hitBoxMap.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Player.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Index.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Ball.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Player.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Player.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  PlayerBlue.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\PlayerBlue.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Scorebar.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Player.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Stakes.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Player.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  WinTitle.cpp
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Player.h(3,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
