@@ -1,3 +1,22 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: Katalog pośredni (Debug\) zawiera pliki udostępnione z innego projektu (com.s1mplox.vcxproj). Może to spowodować niepoprawne zachowanie podczas oczyszczania i ponownej kompilacji.
+  Ball.cpp
+  Collision.cpp
+  Connect.cpp
   Game.cpp
+  Goal.cpp
+  goalPoint.cpp
+  goalPointBlue.cpp
+  hitBoxMap.cpp
+  Index.cpp
+  Player.cpp
+  PlayerBlue.cpp
+  Scorebar.cpp
+  Stakes.cpp
+  WinTitle.cpp
+  Generowanie kodu...
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Stakes.cpp(71): warning C4715: "Stakes::getPosition”: niewszystkie ścieżki kodu zwracają wartość
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Stakes.cpp(93): warning C4715: "Stakes::getRadius”: niewszystkie ścieżki kodu zwracają wartość
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\hitBoxMap.cpp(113): warning C4715: "hitBoxMap::getPosition”: niewszystkie ścieżki kodu zwracają wartość
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\hitBoxMap.cpp(121): warning C4715: "hitBoxMap::getGlobalBounds”: niewszystkie ścieżki kodu zwracają wartość
+C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Goal.cpp(48): warning C4715: "Goal::getPosition”: niewszystkie ścieżki kodu zwracają wartość
   com.s1mplox.vcxproj -> C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Debug\uniball.exe

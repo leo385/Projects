@@ -1,0 +1,19 @@
+﻿  Ball.cpp
+  Collision.cpp
+  Connect.cpp
+  Game.cpp
+  Goal.cpp
+  goalPoint.cpp
+  goalPointBlue.cpp
+  hitBoxMap.cpp
+  Index.cpp
+  Player.cpp
+  PlayerBlue.cpp
+  Scorebar.cpp
+  Stakes.cpp
+  WinTitle.cpp
+  Trwa generowanie kodu
+  Previous IPDB not found, fall back to full compilation.
+  All 283 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Zakończono generowanie kodu
+  com.s1mplox.vcxproj -> C:\Users\leons\Desktop\Projects\Ball Game c++\com.s1mplox\Release\uniball.exe
