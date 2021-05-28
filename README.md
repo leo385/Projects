@@ -16,4 +16,4 @@ There are many projects like 'SFML Games', 'SDL Games', 'OpenGL Games', maybe pr
 You can find also applications there, written in python, like "automatic filling form bots on website'.
 In future I'll figure out to make some kind of cheats to computer games, i mean 'trainers' by using cpp or c#, it's depending from my comfortable.
 
-🎄Merry Christmas, Best Wishes and a lot of 🎁presents🎁🎄
+
