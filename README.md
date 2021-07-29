@@ -1,6 +1,6 @@
 # 🎅 Projects 🎅
 #Game_Folder_cpp
-#Python_Applications 🐍
+#Simulations
 
 👉ABOUT ME👈
 
@@ -10,9 +10,12 @@ I'm interesting also how the websites can being attacked, diffrent ways to get o
 My favourite programming language is cpp, because we have more control at our projects, we can manage RAM by pointers.
 In cpp we've got many programming methods like object programming, function programming, structured programming, etc and that's beautiful :)
 
-👉WHAT IS INSIDE PROJECT'S FOLDER👈
+👉WHAT'S GONNA BE INSIDE PROJECT'S FOLDER👈
 
 There are many projects like 'SFML Games', 'OpenGL Games', Simulations.
 In future I'll figure out to make some kind of cheats to computer games, i mean 'trainers' by using cpp or c#, it's depending from my comfortable.
 
+My main goal is to make a game engine and be satisfied that.
+
+Edit 26-05-2021
 p.s I've got a Practical Reverse Engineering book :)
