@@ -12,8 +12,7 @@ In cpp we've got many programming methods like object programming, function prog
 
 👉WHAT IS INSIDE PROJECT'S FOLDER👈
 
-There are many projects like 'SFML Games', 'SDL Games', 'OpenGL Games', maybe projects from Unreal Engine in future.
-You can find also applications there, written in python, like "automatic filling form bots on website'.
+There are many projects like 'SFML Games', 'OpenGL Games', Simulations.
 In future I'll figure out to make some kind of cheats to computer games, i mean 'trainers' by using cpp or c#, it's depending from my comfortable.
 
-
+p.s I've got a Practical Reverse Engineering book :)
