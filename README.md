@@ -18,7 +18,7 @@ In cpp we've got many programming methods like object programming, functional pr
 There are many projects like 'SFML Games', 'OpenGL Games', Simulations.
 In future I'll figure out to make some kind of cheats to computer games, i mean 'trainers' by using cpp or c#, it's depending from my comfortable.
 
-My main goal is to make a game engine and be satisfied that.
+My main goal is make a game engine and be satisfied that.
 
 Edit 26-05-2021
 p.s I've got a Practical Reverse Engineering book :)
